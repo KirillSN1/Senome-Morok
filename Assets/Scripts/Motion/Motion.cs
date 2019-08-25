@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MotionScript1 : MonoBehaviour
+public class Motion : MonoBehaviour
 {
     [Header("Motion")]
     public float NormalSpeed=4;

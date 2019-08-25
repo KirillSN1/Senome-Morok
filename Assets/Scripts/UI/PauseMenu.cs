@@ -31,9 +31,9 @@ public class PauseMenu : MonoBehaviour
 
         if (Panel.activeInHierarchy)
         {
-            player.GetComponent<MotionScript1>().enabled=false;
+            player.GetComponent<Motion>().enabled=false;
         }
-        else player.GetComponent<MotionScript1>().enabled = true;
+        else player.GetComponent<Motion>().enabled = true;
 
     }
     
