@@ -7,24 +7,27 @@ public class MouseMotion : MonoBehaviour
 
     
     
-    public int MouseButton;
-    public bool moveOn=false;
-    private Vector3 target;
-    
-  
-    public float offset;
-
+    public int MouseButton=1;
+    private bool moveOn=false;
+    private Vector2 target;
+    public float offset=4;
+   
 
     void Update()
     {
+        PlayerAnimEvents();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Vector2 StartPos = player.transform.position;
-        
-        if (Input.GetMouseButtonUp(MouseButton))
-        {
+        GameObject Pause = GameObject.FindGameObjectWithTag("PausePanel");
+
+        if (!Pause)
+        { 
+             if (Input.GetMouseButtonUp(MouseButton))
+             {
             
-            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            moveOn = true;
+                 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                 moveOn = true;
+             }
         }
         if (moveOn)
         {
@@ -34,11 +37,63 @@ public class MouseMotion : MonoBehaviour
         {
             moveOn = false;
         }
-                
+        
+
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         moveOn = false;
         
+    }
+
+    void PlayerAnimEvents()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Vector2 PlayerPos = player.transform.position;
+        //По вертикали и горизонтали
+        if (target.x > PlayerPos.x)
+        {
+            
+        }
+        else if (target.x < PlayerPos.x)
+        {
+
+        }
+
+        if (target.y > PlayerPos.y)
+        {
+
+        }
+        else if (target.y < PlayerPos.y)
+        {
+
+        }
+        //По даогоналям
+        if(target.x> PlayerPos.x && target.y > PlayerPos.y)//вправо вверх
+        {
+
+        }
+        else if(target.x < PlayerPos.x && target.y < PlayerPos.y)//влево вниз
+        {
+
+        }
+
+        if(target.x < PlayerPos.x && target.y > PlayerPos.y)//влево вверх
+        {
+
+        }
+        else if(target.x > PlayerPos.x && target.y < PlayerPos.y)//вправо вниз
+        {
+
+        }
+        //Idle
+        if (target == PlayerPos)
+        {
+
+        }
+        
+
+
     }
 }
