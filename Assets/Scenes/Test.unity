@@ -3748,8 +3748,8 @@ GameObject:
   - component: {fileID: 880989669}
   - component: {fileID: 880989668}
   - component: {fileID: 880989672}
-  - component: {fileID: 880989673}
   - component: {fileID: 880989670}
+  - component: {fileID: 880989673}
   - component: {fileID: 880989671}
   m_Layer: 8
   m_Name: Player
@@ -3849,8 +3849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1373b5c822c2bb74c8a88afe9baa86c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseButton: 0
-  moveOn: 0
+  MouseButton: 1
   offset: 4
 --- !u!50 &880989672
 Rigidbody2D:
