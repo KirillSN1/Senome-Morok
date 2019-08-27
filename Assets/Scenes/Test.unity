@@ -3849,10 +3849,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1373b5c822c2bb74c8a88afe9baa86c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mousePos: {x: 0, y: 0}
   MouseButton: 0
   moveOn: 0
-  offset: 5
+  offset: 4
 --- !u!50 &880989672
 Rigidbody2D:
   serializedVersion: 4

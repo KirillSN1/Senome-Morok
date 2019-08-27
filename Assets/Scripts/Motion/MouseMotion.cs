@@ -8,7 +8,7 @@ public class MouseMotion : MonoBehaviour
     
     
     public int MouseButton;
-    private bool moveOn=false;
+    public bool moveOn=false;
     private Vector3 target;
     
   
@@ -35,5 +35,10 @@ public class MouseMotion : MonoBehaviour
             moveOn = false;
         }
                 
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        moveOn = false;
+        
     }
 }
