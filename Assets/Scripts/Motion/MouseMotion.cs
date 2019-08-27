@@ -16,8 +16,9 @@ public class MouseMotion : MonoBehaviour
     void Update()
     {
         PlayerAnimEvents();
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Vector2 StartPos = player.transform.position;
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //Vector2 StartPos = player.transform.position;
+        Vector2 StartPos = transform.position;
         GameObject Pause = GameObject.FindGameObjectWithTag("PausePanel");
 
         if (!Pause)
@@ -31,14 +32,13 @@ public class MouseMotion : MonoBehaviour
         }
         if (moveOn)
         {
-            player.transform.position = Vector2.MoveTowards(StartPos, target, Time.deltaTime * offset);
+            //player.transform.position = Vector2.MoveTowards(StartPos, target, Time.deltaTime * offset);
+            transform.position = Vector2.MoveTowards(StartPos, target, Time.deltaTime * offset);
         }
         if (Input.GetKey(KeyCode.A) ^ Input.GetKey(KeyCode.W) ^ Input.GetKey(KeyCode.D) ^ Input.GetKey(KeyCode.S))
         {
             moveOn = false;
         }
-        
-
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -49,8 +49,10 @@ public class MouseMotion : MonoBehaviour
 
     void PlayerAnimEvents()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Vector2 PlayerPos = player.transform.position;
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        //Vector2 PlayerPos = player.transform.position;
+        Vector2 PlayerPos = transform.position;
         //По вертикали и горизонтали
         if (target.x > PlayerPos.x)
         {
