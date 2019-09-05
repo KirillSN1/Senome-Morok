@@ -8,24 +8,26 @@ public class MouseMotion : MonoBehaviour
     
     
     public int MouseButton=1;
-    private bool moveOn=false;
-    private Vector2 target;
+    private bool moveOn=false;  
     public float offset=4;
-   
+    [Header("Вспомогательные переменные")]
+    public Vector2 StartPos;
+    public Vector2 target;
+
+
 
     void Update()
     {
         PlayerAnimEvents();
         //GameObject player = GameObject.FindGameObjectWithTag("Player");
         //Vector2 StartPos = player.transform.position;
-        Vector2 StartPos = transform.position;
+        StartPos = transform.position;
         GameObject Pause = GameObject.FindGameObjectWithTag("PausePanel");
 
         if (!Pause)
         { 
              if (Input.GetMouseButtonUp(MouseButton))
-             {
-            
+             {          
                  target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                  moveOn = true;
              }
