@@ -6,7 +6,7 @@ public class PauseMenu : MonoBehaviour
 {
 
     private GameObject Panel;
-    
+    public KeyCode Pause;
 
 
 
@@ -21,7 +21,7 @@ public class PauseMenu : MonoBehaviour
     {
         
         
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(Pause))
         {
             Panel.SetActive(true);
             

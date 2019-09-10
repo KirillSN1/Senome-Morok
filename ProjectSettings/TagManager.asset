@@ -9,6 +9,9 @@ TagManager:
   - MouseTarget
   - ProgressBur
   - Tips
+  - Slider
+  - InventoryManager
+  - Inventory
   layers:
   - Default
   - TransparentFX

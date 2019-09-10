@@ -13,6 +13,7 @@ public class CollectingObJ : MonoBehaviour
     private bool Timer=false;
     private GameObject ProgressB;
     private Slider PB;
+
     
    
     void Start()
@@ -20,7 +21,7 @@ public class CollectingObJ : MonoBehaviour
         Dtime = time;
         Player = GameObject.FindGameObjectWithTag("Player");
         PlayerPos = Player.GetComponent<MouseMotion>();
-        ProgressB = GameObject.FindGameObjectWithTag("Tips");
+        ProgressB = GameObject.FindGameObjectWithTag("Slider");
         PB = ProgressB.GetComponent<Slider>();
         ProgressB.SetActive(false);
         PB.minValue = -time;
@@ -66,14 +67,16 @@ public class CollectingObJ : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        
-        if (Input.GetKeyDown(KeyCode.E))
+        if (collision.CompareTag("Player"))
         {
-            ProgressB.SetActive(true);
-            Timer = true;
-            Player = GameObject.FindGameObjectWithTag("Player");
 
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                ProgressB.SetActive(true);
+                Timer = true;
+                Player = GameObject.FindGameObjectWithTag("Player");
+
+            }
         }
     }
 
