@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-
+    private GameObject ItemCont;
     private GameObject Panel;
     public KeyCode Pause;
 
@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
+        ItemCont = GameObject.FindGameObjectWithTag("Inventory");
         Panel = GameObject.FindGameObjectWithTag("PausePanel");
         Panel.SetActive(false);
     }
@@ -29,12 +30,16 @@ public class PauseMenu : MonoBehaviour
         }
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        if (Panel.activeInHierarchy)
+        if (Panel.activeInHierarchy ^ ItemCont.activeInHierarchy)
         {
-            player.GetComponent<Motion>().enabled=false;
+            player.GetComponent<Motion>().enabled = false;
+            player.GetComponent<MouseMotion>().enabled = false;
         }
-        else player.GetComponent<Motion>().enabled = true;
-
+        else
+        {
+            player.GetComponent<Motion>().enabled = true;
+            player.GetComponent<MouseMotion>().enabled = true;
+        }
     }
     
     public void DisableO()

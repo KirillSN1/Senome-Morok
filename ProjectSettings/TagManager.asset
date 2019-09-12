@@ -12,6 +12,7 @@ TagManager:
   - Slider
   - InventoryManager
   - Inventory
+  - Collectable
   layers:
   - Default
   - TransparentFX
