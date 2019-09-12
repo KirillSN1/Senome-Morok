@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
     public KeyCode TakeButton;
     private GameObject player;
     private ItemTrigger trigger;
+    public GameObject SelectedObj;
 
 
     void Start()
@@ -31,23 +32,10 @@ public class Inventory : MonoBehaviour
     
     void Update()
     {
+        
         ShowInventory();
-        if (trigger.OnItemTrigger)
-        {
-            if (Input.GetKeyDown(TakeButton))
-            {
-                for (int i = 0; i < item.Count; i++)
-                {
-                    if (item[i].id == 0)
-                    {                        
-                        item[i] = trigger.ItemObj.GetComponent<Item>();
-                        ShowItem();
-                        Destroy(trigger.ItemObj);
-                    }
-                    break;
-                }
-            }
-        }
+        Collect();
+        
     }
 
     void ShowInventory()
@@ -82,6 +70,34 @@ public class Inventory : MonoBehaviour
                 img.sprite = null;
             }
             break;
+        }
+    }
+
+    void Collect()
+    {
+        if (trigger.OnItemTrigger)
+        {
+            if (Input.GetKeyDown(TakeButton))
+            {
+                for (int i = 0; i < item.Count; i++)
+                {
+                    if (item[i].id == 0)
+                    {
+                        item[i] = SelectedObj.GetComponent<Item>();
+                        ShowItem();
+                        Destroy(SelectedObj);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    void ChangeSelectedObj()
+    {
+        if (trigger.OnItemTrigger)
+        {
+            SelectedObj = trigger.ItemObj;
         }
     }
 }
