@@ -83,9 +83,9 @@ public class Inventory : MonoBehaviour
                 {
                     if (item[i].id == 0)
                     {
-                        item[i] = SelectedObj.GetComponent<Item>();
+                        item[i] = trigger.ItemObj.GetComponent<Item>();
                         ShowItem();
-                        Destroy(SelectedObj);
+                        Destroy(trigger.ItemObj);
                     }
                     break;
                 }
@@ -93,11 +93,5 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void ChangeSelectedObj()
-    {
-        if (trigger.OnItemTrigger)
-        {
-            SelectedObj = trigger.ItemObj;
-        }
-    }
+    
 }

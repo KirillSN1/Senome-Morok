@@ -8,6 +8,8 @@ public class ItemTrigger : MonoBehaviour
     
     public bool OnItemTrigger=false;
     public GameObject ItemObj;
+    
+    
 
     void Start()
     {
@@ -17,17 +19,18 @@ public class ItemTrigger : MonoBehaviour
     
     void Update()
     {
-        
+       
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        ItemObj = collision.gameObject;
+        ItemObj = gameObject;
         if (collision.CompareTag("Player"))
         {
             OnItemTrigger = true;
         }
-
     }
-    
+
+   
+
 }
