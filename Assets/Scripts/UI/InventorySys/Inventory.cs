@@ -3,95 +3,85 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
 public class Inventory : MonoBehaviour
 {
+    public KeyCode OpenInv;
+    public GameObject Inv;
+    public Scrollbar InvScroll;
+    public Scrollbar DDscroll;
+    public GameObject DDTitle;
+    public GameObject DText;
+    [Header("DropItem")]
+    public int IdSelectedItem;
+    public KeyCode DropItem;
+    public GameObject Content;
+    public int ChildCount;
+    private int SelectedNumber;
+    private GameObject Player;
+    
 
-    public List<Item> item;
-    public GameObject ItemCont;
-    public KeyCode InvButton;
-    public KeyCode TakeButton;
-    private GameObject player;
-    private ItemTrigger trigger;
-    public GameObject SelectedObj;
+    
 
 
     void Start()
     {
-        GameObject trigObj = GameObject.FindGameObjectWithTag("Collectable");
-        trigger=trigObj.GetComponent<ItemTrigger>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        int ChildCount = ItemCont.transform.childCount;
-        item = new List<Item>();
-        for(int i=0; i < ChildCount; i++)
-        {
-            item.Add(new Item());
-        }
-        ItemCont.SetActive(false);
+        Inv.SetActive(false);
+        InvScroll.value = 1;       
+        DDTitle.SetActive(false);
+        DText.SetActive(false);
+
+        Player = GameObject.FindGameObjectWithTag("Player");
+
+        ChildCount = Content.transform.childCount;
     }
 
-    
     void Update()
     {
-        
-        ShowInventory();
-        Collect();
-        
+        OpenInventory();
+        DropSelectedItem();
     }
 
-    void ShowInventory()
-    {        
-        if (Input.GetKeyDown(InvButton)) 
-        {
-            if (ItemCont.activeInHierarchy == false)
-            {
-                ItemCont.SetActive(true);
-                
-            }
-            else ItemCont.SetActive(false);
-        }
-    }
-    void ShowItem()
+    void OpenInventory()
     {
-        for (int i = 0; i < item.Count; i++)
-        {                         
-                Transform cell = ItemCont.transform.GetChild(i);
-                Transform icon = cell.transform.GetChild(0);
-                Image img = icon.GetComponent<Image>();
-            if (item[i].id != 0)
+        if (Input.GetKeyDown(OpenInv))
+        {
+            if (Inv.activeSelf)
             {
-
-                img.enabled = true;
-                img.sprite = Resources.Load<Sprite>(item[i].iconPath);
-
+                Inv.SetActive(false);
             }
             else
-            {
-                img.enabled = false;
-                img.sprite = null;
+            {                
+                Inv.SetActive(true);
             }
-            break;
         }
     }
-
-    void Collect()
+    void DropSelectedItem()
     {
-        if (trigger.OnItemTrigger)
+        if (Input.GetKeyDown(DropItem) & IdSelectedItem != 0)
         {
-            if (Input.GetKeyDown(TakeButton))
+            for (SelectedNumber = 0; SelectedNumber < ChildCount; SelectedNumber++)
             {
-                for (int i = 0; i < item.Count; i++)
+                if (Content.transform.GetChild(SelectedNumber).GetComponentInChildren<ItemDescription>().id == IdSelectedItem)
                 {
-                    if (item[i].id == 0)
-                    {
-                        item[i] = trigger.ItemObj.GetComponent<Item>();
-                        ShowItem();
-                        Destroy(trigger.ItemObj);
-                    }
-                    break;
+                   // DropEvent();
+                    IdSelectedItem = 0;
+
                 }
             }
+
+
         }
     }
+    //void DropEvent()
+    //{
+        //GameObject InstObj;
+       // InstObj=Content.transform.GetChild(SelectedNumber).GetComponentInChildren<ItemDescription>().CorrespObj;
+        //Transform Selected = Content.transform.GetChild(SelectedNumber);
+       // Selected.gameObject.SetActive(false);
+       // Instantiate(InstObj,Player.transform.position,Quaternion.identity);
+    //}
 
     
+
 }
