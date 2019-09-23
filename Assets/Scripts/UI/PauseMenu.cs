@@ -30,7 +30,17 @@ public class PauseMenu : MonoBehaviour
         }
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        if (Panel.activeInHierarchy ^ ItemCont.activeInHierarchy)
+        if (Panel.activeInHierarchy)
+        {
+            player.GetComponent<Motion>().enabled = false;
+            player.GetComponent<MouseMotion>().enabled = false;
+        }
+        else
+        {
+            player.GetComponent<Motion>().enabled = true;
+            player.GetComponent<MouseMotion>().enabled = true;
+        }
+        if (ItemCont.activeInHierarchy)
         {
             player.GetComponent<Motion>().enabled = false;
             player.GetComponent<MouseMotion>().enabled = false;
