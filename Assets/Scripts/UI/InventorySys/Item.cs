@@ -21,21 +21,19 @@ public class Item : MonoBehaviour
     public string id;
     private Sprite Sprite1;
     [Header("Вспомогательные переменные")]
-    public GameObject CellObj;
     public GameObject NameObj;
     public GameObject DescObj;
-    public UiCount CountObj;
+    public ItemDescription ItemDescription;
     public GameObject IconObj;
-
+    
 
 
     private Text Name;
     private Text Desc;
     private Image Icon;
-    private GameObject InvObj;
+    public GameObject InvObj;
 
     private bool collisionBool=false;
-    
     
 
     private void Awake()
@@ -45,6 +43,12 @@ public class Item : MonoBehaviour
         Desc = DescObj.GetComponent<Text>();
         Icon = IconObj.GetComponent<Image>();
     }
+
+    private void Start()
+    {
+        ItemDescription.gameObject.SetActive(false);
+    }
+
     private void Update()
     {
         UpdateCollision();
@@ -62,7 +66,10 @@ public class Item : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collisionBool = false;
+        if (collision.CompareTag("Player"))
+        {
+            collisionBool = false;
+        }
     }
 
     void UpdateCollision()
@@ -72,18 +79,19 @@ public class Item : MonoBehaviour
             if (Input.GetKeyDown(CollectButton))
             {
                 Destroy(gameObject);
-                CellObj.SetActive(true);
-                Name.text = ObjName;
-                Desc.text = Description;
-                CountObj.Count = CountObj.Count + PCount;
-                Icon.sprite = Sprite1;
+                OnActiveItem();
+                ItemDescription.currentCount = ItemDescription.currentCount + PCount;
                 
             }
         }
     }
-
-
-
-
-
+    public void OnActiveItem()
+    {
+       
+        //CellObj.SetActive(true);
+        Name.text = ObjName;
+        Desc.text = Description;
+        
+        Icon.sprite = Sprite1;
+    }
 }

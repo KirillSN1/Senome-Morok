@@ -2,16 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cell : MonoBehaviour
+public class GlobalSet : MonoBehaviour
 {
-    
-    void Start()
-    {
-        
-    }
 
-    
-    void Update()
+    private void Awake()
     {
         
     }

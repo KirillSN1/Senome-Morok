@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    private GameObject ItemCont;
-    private GameObject Panel;
+    private GameObject InvObj;
+    private GameObject PausePanel;
     public KeyCode Pause;
 
 
 
     void Start()
     {
-        ItemCont = GameObject.FindGameObjectWithTag("Inventory");
-        Panel = GameObject.FindGameObjectWithTag("PausePanel");
-        Panel.SetActive(false);
+        InvObj = GameObject.FindGameObjectWithTag("Inventory");
+        PausePanel = GameObject.FindGameObjectWithTag("PausePanel");
+        PausePanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -24,13 +24,13 @@ public class PauseMenu : MonoBehaviour
         
         if (Input.GetKeyDown(Pause))
         {
-            Panel.SetActive(true);
+            PausePanel.SetActive(true);
             
             
         }
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        if (Panel.activeInHierarchy)
+        if (PausePanel.activeInHierarchy)
         {
             player.GetComponent<Motion>().enabled = false;
             player.GetComponent<MouseMotion>().enabled = false;
@@ -40,7 +40,7 @@ public class PauseMenu : MonoBehaviour
             player.GetComponent<Motion>().enabled = true;
             player.GetComponent<MouseMotion>().enabled = true;
         }
-        if (ItemCont.activeInHierarchy)
+        if (InvObj.activeInHierarchy)
         {
             player.GetComponent<Motion>().enabled = false;
             player.GetComponent<MouseMotion>().enabled = false;

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Inventory : MonoBehaviour
 {
+    [Header("RecDesc")]
     public KeyCode OpenInv;
     public GameObject Inv;
     public Scrollbar InvScroll;
@@ -21,11 +22,10 @@ public class Inventory : MonoBehaviour
     private GameObject Player;
     
 
-    
 
-
-    void Start()
+    private void Start()
     {
+        
         Inv.SetActive(false);
         InvScroll.value = 1;       
         DDTitle.SetActive(false);
@@ -39,7 +39,7 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         OpenInventory();
-        DropSelectedItem();
+        //DropSelectedItem();
     }
 
     void OpenInventory()
@@ -56,23 +56,23 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-    void DropSelectedItem()
-    {
-        if (Input.GetKeyDown(DropItem) & IdSelectedItem != 0)
-        {
-            for (SelectedNumber = 0; SelectedNumber < ChildCount; SelectedNumber++)
-            {
-                if (Content.transform.GetChild(SelectedNumber).GetComponentInChildren<ItemDescription>().id == IdSelectedItem)
-                {
+    //void DropSelectedItem()
+    //{
+       // if (Input.GetKeyDown(DropItem) & IdSelectedItem != 0)
+        //{
+           // for (SelectedNumber = 0; SelectedNumber < ChildCount; SelectedNumber++)
+           // {
+                //if (Content.transform.GetChild(SelectedNumber).GetComponentInChildren<ItemDescription>().id == IdSelectedItem)
+                //{
                    // DropEvent();
-                    IdSelectedItem = 0;
+                   // IdSelectedItem = 0;
 
-                }
-            }
+               // }
+           // }
 
 
-        }
-    }
+        //}
+   // }
     //void DropEvent()
     //{
         //GameObject InstObj;

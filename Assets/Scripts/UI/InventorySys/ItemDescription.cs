@@ -9,22 +9,27 @@ public class ItemDescription : MonoBehaviour
     public string DDesc;
     public Inventory InvScript;
     private Text CurrentName;
-    public Text DDItemName;
+    public Text DItemName;
     public Text DDescription;
-    public GameObject CorrespObj;
+    public GameObject InteractObj;
     private Item Links;
     public int id;
-    
+
+    //UiCount
+    public int currentCount;
+    private Text TextC;
 
 
-    private void Start()
+
+    private void Awake()
     {
+        TextC = transform.GetChild(4).GetComponent<Text>();
         CurrentName = gameObject.transform.GetChild(2).GetComponentInChildren<Text>();        
     }
 
     private void Update()
     {
-
+        TextC.text = currentCount.ToString();
     }
 
 
@@ -33,7 +38,7 @@ public class ItemDescription : MonoBehaviour
     {
         InvScript.DDTitle.SetActive(true);
         InvScript.DText.SetActive(true);
-        DDItemName.text = CurrentName.text;
+        DItemName.text = CurrentName.text;
         DDescription.text = DDesc;
         InvScript.IdSelectedItem = id;
     }
