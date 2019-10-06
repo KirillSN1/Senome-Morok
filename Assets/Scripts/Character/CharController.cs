@@ -1,21 +1,18 @@
 ﻿using System.Collections.Generic;
-using Disease;
 using UnityEngine;
 
 namespace Character
 {
     public class CharController : MonoBehaviour
     {
-        public DiseaseType diseaseList;
+        public string diseaseName;
         public bool onDisease;
         public float degree;
-        
+
         public float degreeSpeed;
-        public float degreeStep;
-        
+
         void Start()
         {
-            degree = 0;
             onDisease = false;
         }
 
@@ -32,13 +29,14 @@ namespace Character
             }
         }
 
-        public void Disease(DiseaseType diseaseType)
+        public void Disease(Disease.Disease disease)
         {
             if (Random.Range(0f, 1f) < 0.2f)
             {
                 onDisease = true;
-                degree += degreeStep;
-                diseaseList = diseaseType;
+                degree += disease.DegreeStep * 0.005f;
+                degreeSpeed = disease.DegreeSpeed;
+                diseaseName = disease.Name;
             }
         }
 

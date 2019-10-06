@@ -1,4 +1,5 @@
-﻿using Disease;
+﻿using System.Linq;
+using Disease;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,17 +11,21 @@ namespace NPC
 
         public KeyCode collectButton;
 
-        public DiseaseType disease;
+        private Disease.Disease Disease { get; set; }
 
         public NpcEvent onNpcActive;
 
         void Start()
         {
             _collisionBool = false;
+            var diseaseList = GetComponentInChildren<DiseaseList>().List();
             //todo
             //генерация болезней, надо сделать
-            disease = (DiseaseType) Random.Range(1, 3);
+            Disease = new Disease.Disease();
+            var id = Random.Range(1, 3);
+            Disease = diseaseList.Single(x => x.Id == id);
         }
+
 
         void Update()
         {
@@ -28,7 +33,7 @@ namespace NPC
             {
                 if (Input.GetKeyDown(collectButton))
                 {
-                    onNpcActive.Invoke(disease);
+                    onNpcActive.Invoke(Disease);
                 }
             }
         }
@@ -51,7 +56,7 @@ namespace NPC
     }
 
     [System.Serializable]
-    public class NpcEvent : UnityEvent<DiseaseType>
+    public class NpcEvent : UnityEvent<Disease.Disease>
     {
     }
 }
