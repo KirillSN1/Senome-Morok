@@ -6,17 +6,18 @@ public class Motion : MonoBehaviour
 {
     [Header("Motion")]
     public float NormalSpeed=4;
+
     public float SprintSpeed = 6;
-   
+
     private float Speed;
+
     private Rigidbody2D RB;
+
     private Vector2 MVelos;
-    
 
     [Header("WallFix")]
     public LayerMask CollLayer;
-    
-    
+
     void Start()
     {
         
@@ -24,7 +25,6 @@ public class Motion : MonoBehaviour
         Speed = NormalSpeed;
     }
 
-    
     void Update()
     {
       Vector2 MInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -32,17 +32,12 @@ public class Motion : MonoBehaviour
       RayCollision();
       SpriteChangerFliper();
       Sprint();
-        
     }
-
 
     private void FixedUpdate()
     {
         RB.MovePosition(RB.position + MVelos * Time.deltaTime);
-        
     }
-
-
 
     void RayCollision()
     {
@@ -58,8 +53,9 @@ public class Motion : MonoBehaviour
         hit = Physics2D.Linecast(sPos, ePos, CollLayer);
         Coll.enabled = true;
     }
-   void SpriteChangerFliper()
-   {
+
+    void SpriteChangerFliper()
+    {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         SpriteRenderer Rend = player.GetComponent<SpriteRenderer>();
         if (Input.GetKeyDown(KeyCode.A) ^ (Input.GetKeyDown(KeyCode.LeftArrow)))
@@ -70,8 +66,8 @@ public class Motion : MonoBehaviour
         {
             Rend.flipX = false;
         }
-        
-   }
+    }
+
     void Sprint()
     {
             if (Input.GetKey(KeyCode.A) ^ Input.GetKey(KeyCode.W) ^ Input.GetKey(KeyCode.D) ^ Input.GetKey(KeyCode.S))
@@ -80,7 +76,7 @@ public class Motion : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.LeftShift))
                 {
                     Speed = SprintSpeed;
-
+                   
 
                 }
                 else if (Input.GetKeyUp(KeyCode.LeftShift))
@@ -93,12 +89,5 @@ public class Motion : MonoBehaviour
             {
                 Speed = NormalSpeed;
             }
-        
     }
-    
-        
 }
-
-
-
-
