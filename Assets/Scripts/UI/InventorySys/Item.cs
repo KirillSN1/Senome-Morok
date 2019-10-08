@@ -20,12 +20,10 @@ public class Item : MonoBehaviour
     public KeyCode CollectButton;
     public string id;
     private Sprite Sprite1;
-    [Header("Вспомогательные переменные")]
-    public GameObject NameObj;
+    [Header("Вспомогательные переменные")] public GameObject NameObj;
     public GameObject DescObj;
     public ItemDescription ItemDescription;
     public GameObject IconObj;
-    
 
 
     private Text Name;
@@ -33,12 +31,12 @@ public class Item : MonoBehaviour
     private Image Icon;
     public GameObject InvObj;
 
-    private bool collisionBool=false;
-    
+    private bool collisionBool = false;
+
 
     private void Awake()
-    {   
-        Sprite1 = Resources.Load<Sprite>("Icons/Item"+id);
+    {
+        Sprite1 = Resources.Load<Sprite>("Icons/Item" + id);
         Name = NameObj.GetComponent<Text>();
         Desc = DescObj.GetComponent<Text>();
         Icon = IconObj.GetComponent<Image>();
@@ -51,9 +49,7 @@ public class Item : MonoBehaviour
 
     private void Update()
     {
-        UpdateCollision();
     }
-
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -61,9 +57,9 @@ public class Item : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collisionBool = true;
-                
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -72,26 +68,18 @@ public class Item : MonoBehaviour
         }
     }
 
-    void UpdateCollision()
+    public void OnActive()
     {
-        if (collisionBool)
-        {
-            if (Input.GetKeyDown(CollectButton))
-            {
-                Destroy(gameObject);
-                OnActiveItem();
-                ItemDescription.currentCount = ItemDescription.currentCount + PCount;
-                
-            }
-        }
+        Destroy(gameObject);
+        OnActiveItem();
+        ItemDescription.currentCount = ItemDescription.currentCount + PCount;
     }
+
     public void OnActiveItem()
     {
-       
-        //CellObj.SetActive(true);
         Name.text = ObjName;
         Desc.text = Description;
-        
+
         Icon.sprite = Sprite1;
     }
 }
