@@ -15,6 +15,7 @@ TagManager:
   - Collectable
   - DDItemName
   - InvItem
+  - Bed
   layers:
   - Default
   - TransparentFX
