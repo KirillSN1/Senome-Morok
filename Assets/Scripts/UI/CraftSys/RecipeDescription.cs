@@ -18,6 +18,7 @@ public class RecipeDescription : MonoBehaviour
     public Text DDescription;
     public GameObject DDescriptionObj;
     public GameObject BG_ItemName;
+    public bool Selected;
     
     [Header("Ссылка на предмет рецепта и количество получаемого матер.")]
     public ItemDescription _0;
@@ -35,8 +36,8 @@ public class RecipeDescription : MonoBehaviour
     public int nCount1;
     public ItemDescription _2;
     public int nCount2;
-    private int eCount1;
-    private int eCount2;
+    public int eCount1;
+    public int eCount2;
     
     
     

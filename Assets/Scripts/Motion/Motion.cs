@@ -6,21 +6,19 @@ public class Motion : MonoBehaviour
 {
     [Header("Motion")]
     public float NormalSpeed=4;
-
     public float SprintSpeed = 6;
-
     private float Speed;
-
     private Rigidbody2D RB;
-
     private Vector2 MVelos;
-
+    GameObject player;
+    SpriteRenderer Rend;
     [Header("WallFix")]
     public LayerMask CollLayer;
 
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
+        Rend = player.GetComponent<SpriteRenderer>();
         RB = GetComponent<Rigidbody2D>();
         Speed = NormalSpeed;
     }
@@ -56,8 +54,6 @@ public class Motion : MonoBehaviour
 
     void SpriteChangerFliper()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        SpriteRenderer Rend = player.GetComponent<SpriteRenderer>();
         if (Input.GetKeyDown(KeyCode.A) ^ (Input.GetKeyDown(KeyCode.LeftArrow)))
         {
             Rend.flipX = true;

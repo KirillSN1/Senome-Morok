@@ -5,14 +5,16 @@ namespace Disease
 {
     public class DiseaseList : MonoBehaviour
     {
-        public ICollection<Disease> List()
+        public ICollection<DiseaseModel> List()
         {
-            return  new List<Disease>
+            return new List<DiseaseModel>
             {
-                new Disease {Id = 1, Name = "cholera", DegreeSpeed = 2, DegreeStep = 5},
-                new Disease {Id = 2, Name = "AIDS", DegreeSpeed = 1, DegreeStep = 5},
-                new Disease {Id = 3, Name = "plague", DegreeSpeed = 3, DegreeStep = 6}
+                new DiseaseModel {Id = 1, Name = "cholera", DegreeSpeed = 2, DegreeStep = 5},
+                new DiseaseModel {Id = 2, Name = "AIDS", DegreeSpeed = 1, DegreeStep = 5},
+                new DiseaseModel {Id = 3, Name = "plague", DegreeSpeed = 3, DegreeStep = 6},
+                new DiseaseModel {Id = 4, Name = "diarrhea", DegreeSpeed = 3, DegreeStep = 6}
             };
         }
     }
 }
+ 
